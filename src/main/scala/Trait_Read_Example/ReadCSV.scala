@@ -1,3 +1,5 @@
+package Trait_Read_Example
+
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
 class ReadCSV extends Read {
