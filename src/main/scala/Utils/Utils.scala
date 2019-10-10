@@ -20,12 +20,10 @@ object Utils {
    * @return Returns a spark session
    */
   def createSession(): SparkSession = {
-    val sparkSession = SparkSession.builder()
+    SparkSession.builder()
       .master("local[*]")
       .appName("SparkTraining")
       .getOrCreate()
-
-    sparkSession
   }
 
   /**
@@ -47,12 +45,10 @@ object Utils {
    * @return Returns a dataframe
    */
   def readDataset(sparkSession: SparkSession, name: String): DataFrame = {
-    val dataSet = sparkSession.read.format("csv")
+    sparkSession.read.format("csv")
       .option("header", "true")
       .option("inferSchema", "true")
       .load(datasetPath + name)
-
-    dataSet
   }
 
   /**
