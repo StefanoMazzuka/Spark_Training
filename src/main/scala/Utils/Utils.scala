@@ -1,6 +1,6 @@
 package Utils
 
-import org.apache.spark.sql.{DataFrame, Row, SparkSession}
+import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.{SparkConf, SparkContext}
 
 import scala.swing.{MainFrame, ScrollPane, Table}
@@ -17,6 +17,7 @@ object Utils {
 
   /**
    * Create a spark session
+   *
    * @return Returns a spark session
    */
   def createSession(): SparkSession = {
@@ -28,6 +29,7 @@ object Utils {
 
   /**
    * Create a spark context
+   *
    * @return Returns a spark context
    */
   def createContext(): SparkContext = {
@@ -40,8 +42,9 @@ object Utils {
 
   /**
    * Read a dataset
+   *
    * @param sparkSession Your spark session
-   * @param name Name of the dataset to read
+   * @param name         Name of the dataset to read
    * @return Returns a dataframe
    */
   def readDataset(sparkSession: SparkSession, name: String): DataFrame = {
@@ -53,8 +56,9 @@ object Utils {
 
   /**
    * Show a dataframe on a GUI
+   *
    * @param dataFrame Dataframe to show
-   * @param name Dataframe's name (optional)
+   * @param name      Dataframe's name (optional)
    */
   def show(dataFrame: DataFrame, name: String = "Happy show"): Unit = {
     val guiDataFrame = new GUIDataFrame(dataFrame, name)
@@ -63,20 +67,21 @@ object Utils {
 
   /**
    * GUI to display a dataframe
+   *
    * @param dataFrame Dataframe to show
-   * @param name GUI title
+   * @param name      GUI title
    */
   class GUIDataFrame(dataFrame: DataFrame, name: String) extends MainFrame {
     title = name
 
-    val headers = dataFrame.columns.toSeq
-    val rowData = dataFrame.select(dataFrame.columns.head, dataFrame.columns.tail: _*)
-      .rdd.map{r: Row => r.toSeq.toArray}.collect()
+    val headers = dataFrame.columns
+    val model = dataFrame.collect().map(r => r.toSeq.toArray)
 
     contents = new ScrollPane {
-      val table = new Table(rowData, headers)
-      table.enabled = false
-      contents = table
+      contents = new Table(model, headers) {
+        enabled = false
+      }
     }
   }
+
 }
