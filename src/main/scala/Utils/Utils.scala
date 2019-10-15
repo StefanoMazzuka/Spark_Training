@@ -13,7 +13,8 @@ object Utils {
   /**
    * Change to your datasets path
    */
-  val datasetPath: String = "src\\main\\resources\\"
+  val DATASET_PATH: String = "src\\main\\resources\\"
+  val MAX_ROWS: Int = 20000
 
   /**
    * Create a spark session
@@ -51,7 +52,7 @@ object Utils {
     sparkSession.read.format("csv")
       .option("header", "true")
       .option("inferSchema", "true")
-      .load(datasetPath + name)
+      .load(DATASET_PATH + name)
   }
 
   /**
@@ -73,6 +74,9 @@ object Utils {
    */
   class GUIDataFrame(dataFrame: DataFrame, name: String) extends MainFrame {
     title = name
+
+    var rows = dataFrame.count().toInt
+    if (rows > MAX_ROWS) rows = MAX_ROWS
 
     val headers = dataFrame.columns
     val model = dataFrame.collect().map(r => r.toSeq.toArray)
