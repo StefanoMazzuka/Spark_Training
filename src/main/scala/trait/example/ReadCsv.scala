@@ -1,8 +1,8 @@
-package Trait_Read_Example
+package `trait`.example
 
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
-class ReadCSV extends Read {
+class ReadCsv extends Read {
   override def read(sparkSession: SparkSession, path: String): DataFrame = {
     val dataSet = sparkSession.read.format("csv")
       .option("header", "true")

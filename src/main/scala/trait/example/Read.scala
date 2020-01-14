@@ -1,4 +1,4 @@
-package Trait_Read_Example
+package `trait`.example
 
 import org.apache.spark.sql.{DataFrame, SparkSession}
 

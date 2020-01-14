@@ -1,8 +1,8 @@
-package Trait_Read_Example
+package `trait`.example
 
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
-class ReadPARQUET extends Read {
+class ReadParquet extends Read {
   override def read(sparkSession: SparkSession, path: String): DataFrame = {
     val dataSet = sparkSession.read.format("parquet")
       .load(path)

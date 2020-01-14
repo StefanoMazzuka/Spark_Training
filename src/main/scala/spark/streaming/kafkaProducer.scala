@@ -1,10 +1,10 @@
-package Spark_Streaming
+package spark.streaming
 
 import java.util.Properties
 
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 
-object KafkaProducerScala {
+object kafkaProducer {
 
   def main(args: Array[String]): Unit = {
     producer()

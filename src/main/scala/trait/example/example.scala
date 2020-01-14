@@ -1,17 +1,17 @@
-package Trait_Read_Example
+package `trait`.example
 
-import Utils.Utils
+import utils.utils
 
-object Example extends App {
+object example extends App {
 
-  val sparkSession = Utils.createSession()
+  val sparkSession = utils.createSession()
 
-  val readCSV = new ReadCSV
+  val readCSV = new ReadCsv
   var dataFrameAnimals = readCSV.read(sparkSession, "Animals.csv")
   //dataAnimals.write.parquet("src\\main\\resources\\Animals.parquet")
   dataFrameAnimals.dropDuplicates().show()
 
-  val readPARQUET = new ReadPARQUET
+  val readPARQUET = new ReadParquet
   dataFrameAnimals = readPARQUET.read(sparkSession, "Animals.parquet")
   dataFrameAnimals.dropDuplicates().show()
 }

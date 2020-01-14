@@ -1,6 +1,7 @@
-package Utils
+package utils
 
 import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.apache.spark.sql.functions._
 import org.apache.spark.{SparkConf, SparkContext}
 
 import scala.swing.{MainFrame, ScrollPane, Table}
@@ -8,13 +9,13 @@ import scala.swing.{MainFrame, ScrollPane, Table}
 /**
  * @author Stefano Mazzuka
  */
-object Utils {
+object utils {
 
   /**
    * Change to your datasets path
    */
   val DATASET_PATH: String = "src\\main\\resources\\"
-  val MAX_ROWS: Int = 20000
+  val MAX_ROWS: Int = 100000
 
   /**
    * Create a spark session
@@ -75,11 +76,13 @@ object Utils {
   class GUIDataFrame(dataFrame: DataFrame, name: String) extends MainFrame {
     title = name
 
+    dataFrame.withColumn("id", monotonicallyIncreasingId())
+
     var rows = dataFrame.count().toInt
     if (rows > MAX_ROWS) rows = MAX_ROWS
 
     val headers = dataFrame.columns
-    val model = dataFrame.collect().map(r => r.toSeq.toArray)
+    val model = dataFrame.head(rows).map(r => r.toSeq.toArray)
 
     contents = new ScrollPane {
       contents = new Table(model, headers) {
@@ -87,5 +90,4 @@ object Utils {
       }
     }
   }
-
 }
