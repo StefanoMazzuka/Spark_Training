@@ -1,6 +1,6 @@
-# Project Title
+# Spark Training
 
-One Paragraph of project description goes here
+Ejemplos prácticos y documentación de los módulos de Spark.
 
 ## Getting Started
 
