@@ -1,4 +1,4 @@
-package `trait`.example
+package `trait`
 
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
