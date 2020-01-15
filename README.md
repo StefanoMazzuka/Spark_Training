@@ -4,7 +4,46 @@ Ejemplos prácticos y documentación de los módulos de Spark.
 
 ## Diagrama de Arquitectura
 ![Image of Yaktocat](https://github.com/StefanoMazzuka/Spark_Training/blob/master/img/diagrama_arquitectura.png)
-### Prerequisites
+
+
+## Características
+
+RDD (Resilient Distributed Dataset) Conjunto sólido de datos distribuidos.
+Evaluación perezosa: las transformaciones no se resuelven, se almacenan en un DAG y al ejecutar una acción se ejecutan todas las transformaciones.
+
+## Componentes
+### Spark Core 
+Conjunto de librerías.
+
+### Spark SQL
+Procesamiento de datos estructurados y semi-estructurados.
+
+### Spark Streaming
+Procesamiento de datos en tiempo real.
+
+### Spark MLLib
+Librería de Machine Learning.
+
+### Spark Graph
+Procesamiento y operaciones de grafos, DAG.
+
+## Spark Session
+## Spark Context
+Contexto básico de Spark, desde donde se crean el resto de variables.
+En la shell de Spark viene directamente instancia en la variable «sc», aunque en otros entornos hay que instanciarlo explícitamente.
+Problema que solo se puede instancias una sola vez por JVM.
+La configuración de la estancia se puede definir mediante SparkConf.
+
+
+
+
+
+
+
+
+
+
+
 
 What things you need to install the software and how to install them
 
